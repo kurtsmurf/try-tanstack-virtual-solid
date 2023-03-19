@@ -1,5 +1,5 @@
 import { createVirtualizer } from "@tanstack/solid-virtual"
-
+import { For } from "solid-js"
 
 const App = () => {
   let parentRef;
@@ -29,20 +29,22 @@ const App = () => {
           }}
         >
           {/* Only the visible items in the virtualizer, manually positioned to be in view */}
-          {rowVirtualizer.getVirtualItems().map((virtualItem) => (
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: `${virtualItem.size}px`,
-                transform: `translateY(${virtualItem.start}px)`,
-              }}
-            >
-              Row {virtualItem.index}
-            </div>
-          ))}
+          <For each={rowVirtualizer.getVirtualItems()}>
+            {(virtualItem) => (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: `${virtualItem.size}px`,
+                  transform: `translateY(${virtualItem.start}px)`,
+                }}
+              >
+                Row {virtualItem.index}
+              </div>
+            )}
+          </For>
         </div>
       </div>
     </>
