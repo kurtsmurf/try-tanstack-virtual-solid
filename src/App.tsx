@@ -39,6 +39,7 @@ const App = () => {
                   width: '100%',
                   height: `${virtualItem.size}px`,
                   transform: `translateY(${virtualItem.start}px)`,
+                  background: `hsl(${virtualItem.index * 10}deg 50% 50%)`,
                 }}
               >
                 Row {virtualItem.index}
