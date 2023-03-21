@@ -1,7 +1,8 @@
 import { createVirtualizer } from "@tanstack/solid-virtual"
 import { For } from "solid-js"
+import { VirtualList } from "./VirtualList";
 
-const App = () => {
+const TanDemo = () => {
   let parentRef;
 
   const rowVirtualizer = createVirtualizer({
@@ -42,7 +43,7 @@ const App = () => {
                   background: `hsl(${virtualItem.index * 10}deg 50% 50%)`,
                 }}
               >
-                Row {virtualItem.index}
+                {virtualItem.index}
               </div>
             )}
           </For>
@@ -51,5 +52,25 @@ const App = () => {
     </>
   )
 };
+// 
+const AltDemo
+ = () => {
+  return (
+    <VirtualList
+      data={[...new Array(1000)].map((_, index) => index)}
+      overscanCount={1}
+      renderRow={(index) => <p style={`height: 35px; background: hsl(${index * 10}deg 50% 50%);  margin: 0;`}>{index}</p>}
+      rootHeight={400}
+      rowHeight={35}
+      class=""
+    ></VirtualList>
+  )
+}
+
+const App = () => <>
+  <TanDemo/>
+  <AltDemo
+   />
+</>
 
 export default App;
