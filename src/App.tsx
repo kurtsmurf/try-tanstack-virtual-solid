@@ -2,13 +2,15 @@ import { createVirtualizer } from "@tanstack/solid-virtual"
 import { For } from "solid-js"
 import { VirtualList } from "./VirtualList";
 
+
 const TanDemo = () => {
   let parentRef;
 
   const rowVirtualizer = createVirtualizer({
     count: 1000,
     getScrollElement: () => parentRef,
-    estimateSize: () => 35,
+    estimateSize: () => 100,
+    horizontal: true,
   });
 
   return (
@@ -17,16 +19,16 @@ const TanDemo = () => {
       <div
         ref={parentRef}
         style={{
-          height: `100vh`,
+          height: "100px",
           overflow: 'auto', // Make it scroll!
         }}
       >
         {/* The large inner element to hold all of the items */}
         <div
           style={{
-            height: `${rowVirtualizer.getTotalSize()}px`,
-            width: '100%',
+            width: `${rowVirtualizer.getTotalSize()}px`,
             position: 'relative',
+            height: "100%"
           }}
         >
           {/* Only the visible items in the virtualizer, manually positioned to be in view */}
@@ -37,9 +39,9 @@ const TanDemo = () => {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '100%',
-                  height: `${virtualItem.size}px`,
-                  transform: `translateY(${virtualItem.start}px)`,
+                  width: `${virtualItem.size}px`,
+                  height: "100%",
+                  transform: `translateX(${virtualItem.start}px)`,
                   background: `hsl(${virtualItem.index * 10}deg 50% 50%)`,
                 }}
               >
@@ -69,8 +71,8 @@ const AltDemo
 
 const App = () => <>
   <TanDemo/>
-  <AltDemo
-   />
+  {/* <AltDemo
+   /> */}
 </>
 
 export default App;
