@@ -17,7 +17,7 @@ const TanDemo = () => {
       <div
         ref={parentRef}
         style={{
-          height: `400px`,
+          height: `100vh`,
           overflow: 'auto', // Make it scroll!
         }}
       >

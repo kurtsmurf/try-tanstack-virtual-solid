@@ -78,7 +78,7 @@ export function VirtualList<T>(props: {
   return (
     <div
       ref={rootElement}
-      style={{ overflow: "auto", height: `${props.rootHeight}px` }}
+      style={{ overflow: "auto", height: `100vh` }}
       class={props.class || ""}
       onScroll={handleScroll}
     >
