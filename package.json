@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tanstack/solid-virtual": "*",
+    "@tanstack/virtual-core": "*",
     "solid-js": "^1.6.10"
   }
 }
