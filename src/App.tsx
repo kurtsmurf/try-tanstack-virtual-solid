@@ -1,20 +1,20 @@
 import { createVirtualizer } from "@tanstack/solid-virtual"
-import { For } from "solid-js"
-import { VirtualList } from "./VirtualList";
+import { createSignal, For } from "solid-js"
 
 
-const TanDemo = () => {
+const App = () => {
   let parentRef;
-
-  const rowVirtualizer = createVirtualizer({
-    count: 1000,
+  const [count, setCount] = createSignal(10);
+  const rowVirtualizer = createVirtualizer(() => ({
+    count: count(),
     getScrollElement: () => parentRef,
     estimateSize: () => 100,
     horizontal: true,
-  });
+  }));
 
   return (
     <>
+      <button onClick={() => setCount(prev => prev + 10)}>more</button>
       {/* The scrollable element for your list */}
       <div
         ref={parentRef}
@@ -54,25 +54,5 @@ const TanDemo = () => {
     </>
   )
 };
-// 
-const AltDemo
- = () => {
-  return (
-    <VirtualList
-      data={[...new Array(1000)].map((_, index) => index)}
-      overscanCount={1}
-      renderRow={(index) => <p style={`height: 35px; background: hsl(${index * 10}deg 50% 50%);  margin: 0;`}>{index}</p>}
-      rootHeight={400}
-      rowHeight={35}
-      class=""
-    ></VirtualList>
-  )
-}
-
-const App = () => <>
-  <TanDemo/>
-  {/* <AltDemo
-   /> */}
-</>
 
 export default App;
